@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+  http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>$group_id$</groupId>
+  <artifactId>$name;format="norm"$</artifactId>
+  <version>$version$</version>
+  <name>$name$</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.sourceEncoding>UTF-8</project.reporting.sourceEncoding>
+
+    <vortex-cafe-version>2.1.1</vortex-cafe-version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.prismtech.cafe</groupId>
+      <artifactId>cafe</artifactId>
+      <version>\${vortex-cafe-version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- Configure Maven to target Java 1.8 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <!-- Cafe plugin for IDL file compilation -->
+      <plugin>
+        <groupId>com.prismtech.cafe</groupId>
+        <artifactId>idl2j</artifactId>
+        <version>\${vortex-cafe-version}</version>
+        <executions>
+          <execution>
+            <id>idl-compile</id>
+            <phase>generate-sources</phase>
+            <configuration>
+              <idlDir>src/main/idl</idlDir>
+            </configuration>
+            <goals>
+              <goal>idl-compile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.2.1</version>
+        <configuration>
+          <mainClass>$group_id$.$name;format="Camel"$</mainClass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

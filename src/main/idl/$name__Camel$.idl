@@ -1,0 +1,7 @@
+module datamodel {
+	
+	struct $name;format="Camel"$Type {
+		long id;
+	};
+	#pragma keylist $name;format="Camel"$Type id
+};
